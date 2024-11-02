@@ -1,0 +1,99 @@
+https://pastebin.com/mHNmgejN
+
+local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
+local Window = Library.CreateLib("Advert's Stat-Modifier! V4.11", "Sentinel")
+
+--Tabs
+local Tab1 = Window:NewTab("Main")
+local Tab2 = Window:NewTab("Other")
+local Tab3 = Window:NewTab("Extra")
+local Tab4 = Window:NewTab("Credits")
+local Tab5 = Window:NewTab("Trolls")
+
+--Section for Tabs
+local Tab1Section1 = Tab1:NewSection("Main!")
+local Tab2Section1 = Tab2:NewSection("Main (Others)!")
+local Tab3Section1 = Tab3:NewSection("Main (Extra)!")
+local Tab4Section1 = Tab4:NewSection("Credits! (THESE ARE ALL DISCORD USERS)!")
+local Tab5Section1 = Tab5:NewSection("Main (Trolls)!")
+
+--Main usages
+
+--Tab1
+
+
+Tab1Section1:NewSlider("Walkspeed!", "!GOTTA GO FAST!", 500, 16, function(s) -- 500 (MaxValue) | 0 (MinValue)
+    game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = s
+    
+end)
+
+Tab1Section1:NewSlider("Jumppower!", "!JUMP DUDE JUMPPPPPP!", 500, 50, function(s) -- 500 (MaxValue) | 0 (MinValue)
+    game.Players.LocalPlayer.Character.Humanoid.JumpPower = s
+    
+end) 
+
+Tab1Section1:NewToggle("Super Human", "Makes you a SuperHuman :D (all character stats are 150)", function(state)
+    if state then
+        game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = 150
+        game.Players.LocalPlayer.Character.Humanoid.JumpPower = 150
+    else
+        game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = 16
+        game.Players.LocalPlayer.Character.Humanoid.JumpPower = 50
+    end
+end)
+
+--Tab4
+
+Tab4Section1Section:NewLabel("Advert [Creator/Scripter/All work do'er]")
+
+Tab4Section1:NewTextBox("Test", "Test-Tut", function(txt)
+	print(txt)
+end)
+
+Tab4Section1Section:NewLabel("Nisael [Motivator]")
+
+Tab4Section1Section:NewLabel("Minishakk [Motivator/Inspiration]")
+
+--Tab2
+
+Tab2Section1:NewToggle("Ultra-Human", "x2 of Super-Human!!!", function(state)
+    if state then
+        game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = 300
+        game.Players.LocalPlayer.Character.Humanoid.JumpPower = 300
+    else
+        game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = 16
+        game.Players.LocalPlayer.Character.Humanoid.JumpPower = 50
+    end
+end)
+
+Tab2Section1:NewToggle("GODSPEED", "SPEEDY (Makes your JumpPower Default!)", function(state)
+    if state then
+        game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = 500
+        game.Players.LocalPlayer.Character.Humanoid.JumpPower = 50
+    else
+        game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = 16
+        game.Players.LocalPlayer.Character.Humanoid.JumpPower = 50
+    end
+end)
+
+Tab2Section1:NewToggle("GODJUMPS", "JUMP YALL JUMP!", function(state)
+    if state then
+        game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = 16
+        game.Players.LocalPlayer.Character.Humanoid.JumpPower = 500
+    else
+        game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = 16
+        game.Players.LocalPlayer.Character.Humanoid.JumpPower = 50
+    end
+end)
+
+--Tab3
+
+Tab3Section1:NewToggle("...Ultra-Instinct...", "I feel...worse..", function(state)
+    if state then
+        game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = 1000
+        game.Players.LocalPlayer.Character.Humanoid.JumpPower = 1000
+    else
+        game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = 16
+        game.Players.LocalPlayer.Character.Humanoid.JumpPower = 50
+    end
+end)
