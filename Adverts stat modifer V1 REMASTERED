@@ -1,0 +1,178 @@
+local player = game.Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+
+-- Create the GUI
+local screenGui = Instance.new("ScreenGui")
+screenGui.Name = "TrigonStatModifierGui"
+screenGui.Parent = player:WaitForChild("PlayerGui")
+
+-- Function to add UICorner for rounded edges
+local function addRoundedEdges(instance, radius)
+    local uiCorner = Instance.new("UICorner")
+    uiCorner.CornerRadius = UDim.new(0, radius)
+    uiCorner.Parent = instance
+end
+
+-- Main Frame
+local frame = Instance.new("Frame")
+frame.Size = UDim2.new(0.35, 0, 0.6, 0)
+frame.Position = UDim2.new(0.3, 0, 0.2, 0)
+frame.BackgroundColor3 = Color3.fromRGB(35, 35, 35)
+frame.BackgroundTransparency = 0.1
+frame.BorderSizePixel = 0
+frame.Parent = screenGui
+addRoundedEdges(frame, 10)
+
+-- WalkSpeed Input
+local walkSpeedBox = Instance.new("TextBox")
+walkSpeedBox.Size = UDim2.new(0.45, 0, 0.2, 0)
+walkSpeedBox.Position = UDim2.new(0.05, 0, 0.1, 0)
+walkSpeedBox.PlaceholderText = "WalkSpeed"
+walkSpeedBox.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+walkSpeedBox.Parent = frame
+addRoundedEdges(walkSpeedBox, 10)
+
+-- JumpPower Input
+local jumpPowerBox = Instance.new("TextBox")
+jumpPowerBox.Size = UDim2.new(0.45, 0, 0.2, 0)
+jumpPowerBox.Position = UDim2.new(0.05, 0, 0.35, 0)
+jumpPowerBox.PlaceholderText = "JumpPower"
+jumpPowerBox.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+jumpPowerBox.Parent = frame
+addRoundedEdges(jumpPowerBox, 10)
+
+-- Health Input
+local hpBox = Instance.new("TextBox")
+hpBox.Size = UDim2.new(0.45, 0, 0.2, 0)
+hpBox.Position = UDim2.new(0.05, 0, 0.6, 0)
+hpBox.PlaceholderText = "Health"
+hpBox.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+hpBox.Parent = frame
+addRoundedEdges(hpBox, 10)
+
+-- Apply Button
+local modifyButton = Instance.new("TextButton")
+modifyButton.Size = UDim2.new(0.9, 0, 0.15, 0)
+modifyButton.Position = UDim2.new(0.05, 0, 0.8, 0)
+modifyButton.Text = "Apply Changes"
+modifyButton.BackgroundColor3 = Color3.fromRGB(50, 150, 50)
+modifyButton.Parent = frame
+addRoundedEdges(modifyButton, 10)
+
+-- SuperHuman Toggle
+local superHumanToggle = Instance.new("TextButton")
+superHumanToggle.Size = UDim2.new(0.45, 0, 0.2, 0)
+superHumanToggle.Position = UDim2.new(0.5, 0, 0.1, 0)
+superHumanToggle.Text = "SuperHuman: Off"
+superHumanToggle.BackgroundColor3 = Color3.fromRGB(0, 150, 0)
+superHumanToggle.Parent = frame
+addRoundedEdges(superHumanToggle, 10)
+
+-- UltraHuman Toggle
+local ultraHumanToggle = Instance.new("TextButton")
+ultraHumanToggle.Size = UDim2.new(0.45, 0, 0.2, 0)
+ultraHumanToggle.Position = UDim2.new(0.5, 0, 0.35, 0)
+ultraHumanToggle.Text = "UltraHuman: Off"
+ultraHumanToggle.BackgroundColor3 = Color3.fromRGB(0, 150, 0)
+ultraHumanToggle.Parent = frame
+addRoundedEdges(ultraHumanToggle, 10)
+
+-- ULTRAINSTINCT Toggle
+local ultraInstinctToggle = Instance.new("TextButton")
+ultraInstinctToggle.Size = UDim2.new(0.45, 0, 0.2, 0)
+ultraInstinctToggle.Position = UDim2.new(0.5, 0, 0.6, 0)
+ultraInstinctToggle.Text = "ULTRAINSTINCT: Off"
+ultraInstinctToggle.BackgroundColor3 = Color3.fromRGB(150, 0, 0)
+ultraInstinctToggle.Parent = frame
+addRoundedEdges(ultraInstinctToggle, 10)
+
+-- State Variables
+local isSuperHuman = false
+local isUltraHuman = false
+local isUltraInstinct = false
+
+-- Modify Stats Function
+local function modifyStats()
+    local humanoid = character:FindFirstChild("Humanoid")
+    if humanoid then
+        humanoid.WalkSpeed = tonumber(walkSpeedBox.Text) or humanoid.WalkSpeed
+        humanoid.JumpPower = tonumber(jumpPowerBox.Text) or humanoid.JumpPower
+        humanoid.MaxHealth = tonumber(hpBox.Text) or humanoid.MaxHealth
+        humanoid.Health = humanoid.MaxHealth
+    end
+end
+
+-- SuperHuman Toggle Function
+local function toggleSuperHuman()
+    local humanoid = character:FindFirstChild("Humanoid")
+    if humanoid then
+        isSuperHuman = not isSuperHuman
+        if isSuperHuman then
+            superHumanToggle.Text = "SuperHuman: On"
+            superHumanToggle.BackgroundColor3 = Color3.fromRGB(0, 100, 0)
+            humanoid.WalkSpeed = 150
+            humanoid.JumpPower = 150
+            humanoid.MaxHealth = 250
+            humanoid.Health = 250
+        else
+            superHumanToggle.Text = "SuperHuman: Off"
+            superHumanToggle.BackgroundColor3 = Color3.fromRGB(0, 150, 0)
+            humanoid.WalkSpeed = 16
+            humanoid.JumpPower = 50
+            humanoid.MaxHealth = 100
+            humanoid.Health = 100
+        end
+    end
+end
+
+-- UltraHuman Toggle Function
+local function toggleUltraHuman()
+    local humanoid = character:FindFirstChild("Humanoid")
+    if humanoid then
+        isUltraHuman = not isUltraHuman
+        if isUltraHuman then
+            ultraHumanToggle.Text = "UltraHuman: On"
+            ultraHumanToggle.BackgroundColor3 = Color3.fromRGB(0, 100, 0)
+            humanoid.WalkSpeed = 300
+            humanoid.JumpPower = 300
+            humanoid.MaxHealth = 500
+            humanoid.Health = 500
+        else
+            ultraHumanToggle.Text = "UltraHuman: Off"
+            ultraHumanToggle.BackgroundColor3 = Color3.fromRGB(0, 150, 0)
+            humanoid.WalkSpeed = 16
+            humanoid.JumpPower = 50
+            humanoid.MaxHealth = 100
+            humanoid.Health = 100
+        end
+    end
+end
+
+-- ULTRAINSTINCT Toggle Function
+local function toggleUltraInstinct()
+    local humanoid = character:FindFirstChild("Humanoid")
+    if humanoid then
+        isUltraInstinct = not isUltraInstinct
+        if isUltraInstinct then
+            ultraInstinctToggle.Text = "ULTRAINSTINCT: On"
+            ultraInstinctToggle.BackgroundColor3 = Color3.fromRGB(0, 0, 150)
+            humanoid.WalkSpeed = 600
+            humanoid.JumpPower = 600
+            humanoid.MaxHealth = 1000
+            humanoid.Health = 1000
+        else
+            ultraInstinctToggle.Text = "ULTRAINSTINCT: Off"
+            ultraInstinctToggle.BackgroundColor3 = Color3.fromRGB(150, 0, 0)
+            humanoid.WalkSpeed = 16
+            humanoid.JumpPower = 50
+            humanoid.MaxHealth = 100
+            humanoid.Health = 100
+        end
+    end
+end
+
+-- Button Connections
+modifyButton.MouseButton1Click:Connect(modifyStats)
+superHumanToggle.MouseButton1Click:Connect(toggleSuperHuman)
+ultraHumanToggle.MouseButton1Click:Connect(toggleUltraHuman)
+ultraInstinctToggle.MouseButton1Click:Connect(toggleUltraInstinct)
